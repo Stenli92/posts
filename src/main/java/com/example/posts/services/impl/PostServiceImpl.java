@@ -26,13 +26,14 @@ public class PostServiceImpl implements PostService {
         this.postRepository = postRepository;
     }
     @Override
-    public void populatePostToDb() {
+    public List<Post> populatePostToDb() {
         String url = "https://jsonplaceholder.typicode.com/posts";
         Post[] posts = this.restTemplate.getForObject(url, Post[].class);
 
         if (posts != null){
             List<Post> postList = Arrays.stream(posts).map(e -> this.modelMapper.map(e, Post.class)).toList();
-            this.postRepository.saveAll(postList);
+            return this.postRepository.saveAll(postList);
         }
+        return null;
     }
 }

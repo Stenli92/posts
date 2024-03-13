@@ -46,7 +46,7 @@ public class Post {
         this.id = id;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false , length = 1024)
     public String getTitle() {
         return title;
     }
@@ -55,8 +55,7 @@ public class Post {
         this.title = title;
     }
 
-    @Column(nullable = false)
-
+    @Column(nullable = false , length = 2048)
     public String getBody() {
         return body;
     }
