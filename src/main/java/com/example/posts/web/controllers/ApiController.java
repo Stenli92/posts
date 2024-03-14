@@ -39,10 +39,18 @@ public class ApiController {
     }
 
     @GetMapping("/posts")
-    public List<Post> getPosts(){
-        this.postService.populatePostToDb();
+    public String getPosts(){
+        List<Post> posts = this.postService.populatePostToDb();
 
-        return this.postService.populatePostToDb();
+        // Create a Thymeleaf Context and add attributes to it
+        Context context = new Context();
+
+        context.setVariable("posts" , posts);
+
+        // Process the template with the Thymeleaf Context
+        String htmlContent = this.templateEngine.process("posts", context);
+
+        return htmlContent;
 
     }
 }

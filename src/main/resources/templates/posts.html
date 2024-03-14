@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{../static/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{../style/main.css}" rel="stylesheet" />
+    <title>Post Database</title>
+</head>
+<body>
+<div th:unless="${#lists.isEmpty(posts)}" class="container">
+    <h2 class="text-center">People table</h2>
+    <table border="2" th:class="employee-table">
+        <thead>
+        <tr th:class="table-header">
+            <th>ID </th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>User ID</th>
+        </tr>
+        </thead>
+        <tbody th:each="post : ${posts}">
+
+        <td th:text="${post.id}"></td>
+        <td th:text="${post.title}"></td>
+        <td th:text=" ${post.body}"></td>
+        <td th:text="${post.userId}"></td>
+
+        <!--                    </tr>-->
+        </tbody>
+    </table>
+
+    <div >
+        <a href="/">
+            <button class="btn btn-primary">Back</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>
